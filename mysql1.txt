@@ -1,0 +1,11 @@
+CREATE USER 'publicuser'@'%' IDENTIFIED BY 'Public@54321';
+GRANT SELECT ON adslprofile.* TO 'publicuser'@'%';
+FLUSH PRIVILEGES;
+
+
+CREATE USER 'replica'@'%' IDENTIFIED BY 'replica@54321_';
+GRANT REPLICATION SLAVE ON *.* TO 'replica'@'%';
+FLUSH PRIVILEGES;
+
+
+test

@@ -1,0 +1,30 @@
+SELECT COUNT(DISTINCT serial) FROM onuserial WHERE SUBSTRING(serial, 1, 3) IN ('ZTE', 'SCT', 'HWT', 'PHY')
+
+SELECT SUBSTRING(serial, 1, 3),count(SUBSTRING(serial, 1, 3)) as count FROM onuserial GROUP BY (SUBSTRING(serial, 1, 3)) order by count desc
+
+
+
+
+
+
+
+
+
+
+
+docker
+sudo ./run_parallel1.sh
+sudo ./run_parallel2.sh
+sudo docker build -t ftth-monitor-image .
+
+sudo docker stop $(sudo docker ps -q)
+
+
+//count docker running
+sudo docker ps -q | wc -l
+
+
+
+
+
+

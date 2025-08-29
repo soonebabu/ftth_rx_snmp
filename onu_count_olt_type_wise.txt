@@ -1,0 +1,5 @@
+SELECT n.type AS olt_type, COUNT(o.id) AS onu_count
+FROM node n
+LEFT JOIN onuserial o ON n.id = o.nodeid
+GROUP BY n.type
+ORDER BY n.type

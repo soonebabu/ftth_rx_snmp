@@ -1,0 +1,38 @@
+CREATE USER 'ntbi'@'10.26.192.%' IDENTIFIED BY 'bi@2o25';
+GRANT SELECT ON adslprofile.* TO 'baruntest'@'172.17.23.%';;
+FLUSH PRIVILEGES;
+
+
+drop USER 'ntbi'@'10.26.192.%';
+CREATE USER 'ntbi'@'%' IDENTIFIED BY 'bi@2o25';
+GRANT SELECT ON adslprofile.* TO 'ntbi'@'%';
+FLUSH PRIVILEGES;
+
+REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'baruntest'@'172.17.23.%';
+
+
+ ping 10.26.192.37
+
+
+sudo netstat -tuln | grep 3306
+
+
+please try mysql on 192.168.116.177 this ip. 
+user: ntbi
+pwd: ntbi@2o25
+db: adslprofile
+
+
+sudo iptables -A INPUT -p tcp -s 10.26.192.37 --dport 3306 -j ACCEPT
+
+
+
+
+DROP VIEW IF EXISTS `onuserialdetails`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`phpmyadmin`@`localhost` SQL SECURITY DEFINER VIEW `view_onuserialdetails` AS select `onuserial`.`id` AS `id`,`onuserial`.`serial` AS `serial`,`onuserial`.`name` AS `customerName`,`onuserial`.`rxpower` AS `rxpower`,`onuserial`.`oltrxpower` AS `oltrxpower`,`onuserial`.`distance` AS `distance`,`onuserial`.`temperature` AS `temperature`,`node`.`name` AS `oltName`,`node`.`exchange` AS `exchange`,`node`.`region` AS `region`,`node`.`ip` AS `ip`,`onuoid`.`card` AS `card`,`onuoid`.`port` AS `port`,`onuoid`.`onu` AS `onu`,`onuserial`.`timestamp` AS `lastupdated`,`onuserial`.`firstcreatedon` from ((`onuserial` join `node` on((`onuserial`.`nodeid` = `node`.`id`))) join `onuoid` on((`onuserial`.`onuid` = `onuoid`.`id`))) where `onuserial`.`rxpower` != 0 order by `onuserial`.`timestamp` desc;
+
+
+
+
+

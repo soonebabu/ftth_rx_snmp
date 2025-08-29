@@ -1,0 +1,9 @@
+sudo docker build -t ftth-monitor-image .
+
+sudo docker build -f Dockerfile.prod -t ftth-monitor-image .
+
+barunntc@nagios:~/snmp-app$ sudo docker build -t ftth-monitor-image-SNMPWalk-1.2 .
+ sudo ./run_parallel1.sh
+
+
+sudo docker run --rm --network host ftth-monitor-image-snmpwalk

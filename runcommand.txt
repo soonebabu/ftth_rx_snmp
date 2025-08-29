@@ -1,0 +1,9 @@
+mvn clean compile
+mvn exec:java -Dexec.mainClass=com.example.snmp.App
+
+mvn exec:java -Dexec.args="17 wrd test"
+
+mvn exec:java
+
+
+mvn exec:java > output.txt 2>&1
