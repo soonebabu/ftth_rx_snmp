@@ -354,9 +354,7 @@ public class Dao {
         if (dataSource instanceof com.zaxxer.hikari.HikariDataSource) {
             ((com.zaxxer.hikari.HikariDataSource) dataSource).close();
         }
-    }
-
-    
+    }   
 
 
 

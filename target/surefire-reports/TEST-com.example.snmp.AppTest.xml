@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-21\bin"/>
-    <property name="sun.java.command" value="C:\Users\H\AppData\Local\Temp\surefire16905844580880889588\surefirebooter-20250831143646546_3.jar C:\Users\H\AppData\Local\Temp\surefire16905844580880889588 2025-08-31T14-36-46_395-jvmRun1 surefire-20250831143646546_1tmp surefire_0-20250831143646546_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\H\AppData\Local\Temp\surefire3634684666313674800\surefirebooter-20250831144453822_3.jar C:\Users\H\AppData\Local\Temp\surefire3634684666313674800 2025-08-31T14-44-53_679-jvmRun1 surefire-20250831144453822_1tmp surefire_0-20250831144453822_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\H\snmp_program\snmp-console\target\test-classes;C:\Users\H\snmp_program\snmp-console\target\classes;C:\Users\H\.m2\repository\junit\junit\3.8.1\junit-3.8.1.jar;C:\Users\H\.m2\repository\org\snmp4j\snmp4j\2.8.6\snmp4j-2.8.6.jar;C:\Users\H\.m2\repository\com\mysql\mysql-connector-j\8.0.33\mysql-connector-j-8.0.33.jar;C:\Users\H\.m2\repository\com\google\protobuf\protobuf-java\3.21.9\protobuf-java-3.21.9.jar;C:\Users\H\.m2\repository\com\zaxxer\HikariCP\5.0.1\HikariCP-5.0.1.jar;C:\Users\H\.m2\repository\org\slf4j\slf4j-api\2.0.13\slf4j-api-2.0.13.jar;C:\Users\H\.m2\repository\ch\qos\logback\logback-classic\1.4.14\logback-classic-1.4.14.jar;C:\Users\H\.m2\repository\ch\qos\logback\logback-core\1.4.14\logback-core-1.4.14.jar;C:\Users\H\.m2\repository\com\sun\mail\jakarta.mail\2.0.1\jakarta.mail-2.0.1.jar;C:\Users\H\.m2\repository\com\sun\activation\jakarta.activation\2.0.1\jakarta.activation-2.0.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\H\AppData\Local\Temp\surefire16905844580880889588\surefirebooter-20250831143646546_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\H\AppData\Local\Temp\surefire3634684666313674800\surefirebooter-20250831144453822_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.3+7-LTS-152"/>
@@ -58,5 +58,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testApp" classname="com.example.snmp.AppTest" time="0.012"/>
+  <testcase name="testApp" classname="com.example.snmp.AppTest" time="0.0"/>
 </testsuite>
