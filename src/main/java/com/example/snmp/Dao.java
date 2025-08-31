@@ -181,6 +181,47 @@ public class Dao {
         return nodes;
     }
 
+    /**
+     * Get nodes filtered by IP and Service.
+     * @param ip OLT NODE IP
+     * @param service ftth
+     * @return Corresponding Node object
+     */
+    public Node getNodeFromIpAndService(String ip, String service) {        
+        Node node=new Node();        
+        String query ="SELECT * FROM node WHERE ip LIKE ? AND service LIKE ?";
+
+        try (Connection conn = getDbConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, ip);
+            stmt.setString(2, service);
+            
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {                    
+                    node.setId(rs.getInt("id"));
+                    node.setName(rs.getString("name"));
+                    node.setType(rs.getInt("type"));
+                    node.setIp(rs.getString("ip"));
+                    node.setAssignedID(rs.getString("assignedID"));
+                    node.setShelfncard(rs.getString("shelfncard"));
+                    node.setService(rs.getString("service"));
+                    node.setPortspercard(rs.getInt("portspercard"));
+                    node.setRegion(rs.getString("region"));
+                    node.setExchange(rs.getString("exchange"));
+                    node.setSnmpcommunity(rs.getString("snmpcommunity"));
+                    node.setSnmpwritecommunity(rs.getString("snmpwritecommunity"));
+                    node.setSysname(rs.getString("sysname"));
+                    node.setTimestamp(rs.getTimestamp("timestamp"));                    
+                }
+            }
+        } catch (SQLException e) {
+            logger.error("Database error in getNoderomIpAndService: " + e.getMessage());
+        }
+        return node;
+    }
+
     /**************************************************************
      * NODE SERIALS SECTION
      **************************************************************/

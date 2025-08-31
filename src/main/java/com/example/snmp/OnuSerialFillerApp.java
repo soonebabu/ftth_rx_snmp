@@ -85,6 +85,7 @@ public class OnuSerialFillerApp {
 
         // Shutdown executor and update final ONUs in database
         executor.shutdown();
+        logger.info("Execution dao.updateOnuserialFromOnuserialraw() ");
         dao.updateOnuserialFromOnuserialraw();
     }
 
@@ -215,7 +216,7 @@ public class OnuSerialFillerApp {
 
         long endTime = System.currentTimeMillis();
         double durationInSeconds = (endTime - startTime) / 1000.0;
-        // System.out.println("Time taken: " + durationInSeconds + " seconds");
+        logger.info("Total duration for node {}: {} seconds", node.getIp(), durationInSeconds);        
     }
 
     /**

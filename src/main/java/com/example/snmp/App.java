@@ -36,13 +36,21 @@ public class App {
         String region = "all"; // Region filter, default is "all"
         String mode = "prod";  // Mode for DAO, default "prod"
 
+        // Initialize DAO to interact with database
+        Dao dao = new Dao(mode);
+        Parameter parameter = dao.getSnmpConfig(); // Retrieve SNMP configuration
+
         // Parse command line arguments
         if (args.length >= 1) {
             try {
                 // If the first argument is longer than 6 characters, it may be a special identifier
                 if(args[0].length() > 6) {
-                    logger.info("First argument is longer than 6 characters: {}", args[0]);                    
-                    // Placeholder for future code: (new OnuSerialFillerApp()).sendSnmpWalkAllOnus(node,nType);
+                    logger.info("First argument is longer than 6 characters: {}", args[0]);        
+                    Node node=dao.getNodeFromIpAndService(args[0], "ftth");  
+                    NodeType nodeType=dao.getNodeTypeById(node.getType());          
+                    (new OnuSerialFillerApp()).sendSnmpWalkAllOnus(node,nodeType,dao);
+                    DataSourceSingleton.shutdownAll();
+                    System.exit(0);
                 }
 
                 // Parse the first argument as node type
@@ -57,9 +65,9 @@ public class App {
                     // nType = 1 triggers serial number scanning using OnuSerialFillerApp
                     (new OnuSerialFillerApp()).callableMain(mode);
                 }
-            } catch (NumberFormatException e) {
+            } catch (Error e) {
                 System.out.println("Invalid number for nType. Defaulting to 0.");
-                logger.error("Invalid number for nType. Defaulting to 0." + e.toString());
+                logger.error("Error inside APP when argument length is greater or equal to 1 " + e.toString());
             }
         }
 
@@ -73,9 +81,7 @@ public class App {
             mode = args[2];
         }
 
-        // Initialize DAO to interact with database
-        Dao dao = new Dao(mode);
-        Parameter parameter = dao.getSnmpConfig(); // Retrieve SNMP configuration
+        
 
         // Create a fixed thread pool for processing nodes
         ExecutorService executor = Executors.newFixedThreadPool(parameter.getThreadPool());

@@ -49,7 +49,28 @@ public class HelperClass {
         return target;
     }
 
-    public String macToCustomFormat(String mac) {
+//     public String macToCustomFormat(String mac) {
+//     if (mac == null) return null;
+
+//     String[] parts = mac.split(":");
+//     StringBuilder sb = new StringBuilder();
+
+//     // First 4 bytes → ASCII
+//     for (int i = 0; i < 4 && i < parts.length; i++) {
+//         int value = Integer.parseInt(parts[i], 16);
+//         sb.append((char) value);  // direct ASCII
+//     }
+
+//     // Remaining bytes → HEX (uppercase, no ":")
+//     for (int i = 4; i < parts.length; i++) {
+//         sb.append(parts[i].toUpperCase());
+//     }
+
+//     return sb.toString().toUpperCase(); // whole string uppercase
+// }
+
+
+public String macToCustomFormat(String mac) {
     if (mac == null) return null;
 
     String[] parts = mac.split(":");
@@ -57,8 +78,13 @@ public class HelperClass {
 
     // First 4 bytes → ASCII
     for (int i = 0; i < 4 && i < parts.length; i++) {
-        int value = Integer.parseInt(parts[i], 16);
-        sb.append((char) value);  // direct ASCII
+        try {
+            int value = Integer.parseInt(parts[i], 16);
+            sb.append((char) value);
+        } catch (NumberFormatException e) {
+            // fallback: append raw string
+            sb.append(parts[i]);
+        }
     }
 
     // Remaining bytes → HEX (uppercase, no ":")
@@ -66,8 +92,11 @@ public class HelperClass {
         sb.append(parts[i].toUpperCase());
     }
 
-    return sb.toString().toUpperCase(); // whole string uppercase
+    return sb.toString().toUpperCase();
 }
+
+
+
 
 
 public Timestamp parseSnmpDate(String input) {

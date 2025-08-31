@@ -16,12 +16,15 @@ public class DataSourceSingleton {
 
     // Add this simple shutdown method
     public static void shutdownAll() {
-        for (HikariDataSource ds : dataSourceMap.values()) {
-            if (ds != null && !ds.isClosed()) {
-                ds.close();
-            }
+         for (Map.Entry<String, HikariDataSource> entry : dataSourceMap.entrySet()) {
+        String mode = entry.getKey();
+        HikariDataSource ds = entry.getValue();
+        if (ds != null && !ds.isClosed()) {
+            System.out.println("Closing DB pool for mode: " + mode);
+            ds.close();
         }
-        dataSourceMap.clear();
+    }
+    dataSourceMap.clear();
     }
 
     // Add this static block to your class
@@ -64,7 +67,7 @@ public class DataSourceSingleton {
                 break;
         }
 
-        config.setMaximumPoolSize(300);
+        config.setMaximumPoolSize(100);
         config.setMinimumIdle(5);
         config.setConnectionTimeout(30000);
         config.setIdleTimeout(600000);
@@ -73,11 +76,11 @@ public class DataSourceSingleton {
 
         HikariDataSource ds = new HikariDataSource(config);
 
-        // shutdown hook for each pool
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            System.out.println("Shutting down DB pool for mode: " + mode);
-            ds.close();
-        }));
+        // // shutdown hook for each pool
+        // Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+        //     System.out.println("Shutting down DB pool for mode: " + mode);
+        //     ds.close();
+        // }));
 
         return ds;
     }
