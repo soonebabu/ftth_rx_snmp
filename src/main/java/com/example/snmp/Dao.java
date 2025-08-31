@@ -495,8 +495,7 @@ public class Dao {
         }
 
         conn.commit(); // commit once
-        updateOnuserialFromOnuserialraw();
-
+        
     } catch (SQLException e) {
         logger.error("Database error in updateOnuSerialRawBulk: {}", e.getMessage(), e);
         throw e;

@@ -74,6 +74,7 @@ public class OnuSerialFillerApp {
         }
 
         executor.shutdown();
+        dao.updateOnuserialFromOnuserialraw();
 
         // dao.close();
 
